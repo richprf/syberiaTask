@@ -18,7 +18,7 @@ const HouseCard: FC<Props> = ({ house }) => {
         backgroundColor: "#7575fefe",
       }}
       transition={{ type: "spring", stiffness: 100, damping: 15, mass: 0.8 }}
-      className="rounded-2xl overflow-hidden shadow-md dark:bg-zinc-800 dark:border dark:border-zinc-600"
+      className="rounded-2xl overflow-hidden shadow-md bg-zinc-800 border-2 border-zinc-600"
     >
       <HouseCardImage house={house} />
       <HouseCardInfo house={house} />

@@ -38,8 +38,8 @@ console.log("فیلتر:", filteredHouses.length);
   console.log("filteredHouses" , filteredHouses)
 
   return (
-    <div className="hidden md:flex flex-col gap-3 absolute top-0 right-0 max-w-[540px] h-screen overflow-y-auto z-10 space-y-3 rounded-l-[32px] bg-white dark:bg-dark-200 pr-[56px]">
-      <div className="w-full pt-[55px]">
+    <div className="hidden md:flex flex-col gap-3  absolute top-0 right-0 max-w-[540px] h-screen overflow-y-auto z-10 space-y-3 rounded-l-[32px] bg-dark-200 pr-[56px] pl-5">
+      <div className="w-full pt-[55px] ">
         <BreadCrumbsComponents />
       </div>
 

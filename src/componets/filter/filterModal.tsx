@@ -11,12 +11,11 @@ import {
 } from "@heroui/react";
 import { IoTrashOutline } from "react-icons/io5";
 import { useDispatch } from "react-redux";
-import { setFilters } from "@/redux/slices/houseSlice";
+import { resetFilters, setFilters } from "@/redux/slices/houseSlice";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import DestinationInput from "./destinationInput";
 import PriceSlider from "./priceSlider";
 import RateSelect from "./rateSelect";
-
 
 const FilterModal: FC = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -50,6 +49,10 @@ const FilterModal: FC = () => {
     dispatch(setFilters({ [field]: value }));
   };
 
+  const handleReset = () => {
+    dispatch(resetFilters());
+  };
+
   return (
     <>
       <div onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
@@ -78,25 +81,42 @@ const FilterModal: FC = () => {
         isOpen={isOpen}
         onOpenChange={onOpenChange}
         size="2xl"
-        className="pr-[56px] pl-[36px]"
+        className="pr-[56px] pl-[36px] bg-gray-800"
       >
         <ModalContent>
           {(onClose) => (
             <>
-              <div className="flex justify-between pl-9">
-                <ModalHeader className="flex flex-col gap-1">فیلتر ها</ModalHeader>
-                <div className="flex gap-1 text-red-500">
-                  <IoTrashOutline className="mt-[18px]" size={18} />
-                </div>
+              <div className="flex justify-between ">
+                <ModalHeader className="flex flex-col gap-1">
+                  <div
+                    className="flex gap-1  text-red-500  cursor-pointer"
+                    onClick={handleReset}
+                  >
+                    <IoTrashOutline className="mt-[18px]" size={20} />
+                    <span className=" mt-4"> پاک کردن فیلتر ها </span>
+                  </div>
+                </ModalHeader>
               </div>
-              <ModalBody className="flex flex-col gap-6">
-                <DestinationInput
-                  value={destination}
-                  onChange={(val) => {
-                    setDestination(val);
-                    applyFilterChange("destination", val);
-                  }}
-                />
+
+              <ModalBody className="flex flex-col gap-6 ">
+                <div className="grid grid-cols-2 gap-5">
+                  <DestinationInput
+                    value={destination}
+                    onChange={(val) => {
+                      setDestination(val);
+                      applyFilterChange("destination", val);
+                    }}
+                  />
+
+                  <RateSelect
+                    value={rate}
+                    onChange={(val) => {
+                      setRate(val);
+                      applyFilterChange("minRate", val);
+                    }}
+                  />
+                </div>
+
                 <PriceSlider
                   min={0}
                   max={2000}
@@ -105,13 +125,6 @@ const FilterModal: FC = () => {
                     setPriceRange(val);
                     applyFilterChange("minPrice", val[0]);
                     applyFilterChange("maxPrice", val[1]);
-                  }}
-                />
-                <RateSelect
-                  value={rate}
-                  onChange={(val) => {
-                    setRate(val);
-                    applyFilterChange("minRate", val);
                   }}
                 />
               </ModalBody>

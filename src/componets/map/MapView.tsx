@@ -11,7 +11,6 @@ import HousesList from "../houseList/housesList";
 import HouseMarker from "./HouseMarker";
 import FlyToLocation from "./flytoLocation";
 
-
 interface MapViewProps {
   houses: HouseProps[];
 }
@@ -25,7 +24,6 @@ const MapViews: React.FC<MapViewProps> = ({ houses }) => {
     (state: RootState) => state.map.selectedLocation
   );
 
-  // رفع مشکل آیکون پیش‌فرض Leaflet
   delete (L.Icon.Default.prototype as any)._getIconUrl;
   L.Icon.Default.mergeOptions({
     iconRetainUrl: require("leaflet/dist/images/marker-icon-2x.png"),

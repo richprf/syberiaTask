@@ -78,6 +78,15 @@ const houseSlice = createSlice({
       state.filters = { ...state.filters, ...action.payload };
       state.filteredHouses = applyFilters(state);
     },
+    resetFilters: (state) => {
+      state.filters = {
+        destination: "",
+        minPrice: null,
+        maxPrice: null,
+        minRate: null,
+      };
+      state.filteredHouses = applyFilters(state);
+    },
   },
 });
 
@@ -104,5 +113,5 @@ function applyFilters(state: HouseState) {
   });
 }
 
-export const { setHouses, setSearchQuery, setFilters } = houseSlice.actions;
+export const { setHouses, setSearchQuery, setFilters , resetFilters } = houseSlice.actions;
 export default houseSlice;

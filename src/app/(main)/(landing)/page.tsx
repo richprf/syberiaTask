@@ -1,6 +1,5 @@
 "use client";
 
-
 import MapViews from "@/componets/map/MapView";
 import { fetchHouses } from "@/lib/fetchHouse";
 import { setHouses } from "@/redux/slices/houseSlice";
@@ -10,9 +9,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 const page = () => {
-
-    const dispatch = useDispatch();
-
+  const dispatch = useDispatch();
 
   const {
     data: houses,
@@ -30,8 +27,6 @@ const page = () => {
     }
   }, [houses, dispatch]);
 
-
-
   if (error) {
     return (
       <p className="text-center text-xl mb-14"> چیزی دنیه برار (خوش گلدین) </p>
@@ -46,13 +41,7 @@ const page = () => {
     );
   }
 
-  console.log("housereserves", houses);
-
-  return (
-    <div>
-   {houses && <MapViews houses={houses} />}
-    </div>
-  );
+  return <div>{houses && <MapViews houses={houses} />}</div>;
 };
 
 export default page;
