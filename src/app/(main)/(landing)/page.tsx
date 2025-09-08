@@ -1,6 +1,7 @@
 "use client";
 
-import MapView from "@/componets/map/map";
+
+import MapViews from "@/componets/map/MapView";
 import { fetchHouses } from "@/lib/fetchHouse";
 import { setHouses } from "@/redux/slices/houseSlice";
 import { Spinner } from "@heroui/react";
@@ -49,7 +50,7 @@ const page = () => {
 
   return (
     <div>
-   {houses && <MapView houses={houses} />}
+   {houses && <MapViews houses={houses} />}
     </div>
   );
 };
