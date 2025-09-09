@@ -21,7 +21,7 @@ const PaymentStep: FC<Iprops> = ({ step, setStep }) => {
   const prevStep = () => setStep(step - 1);
 
   return (
-    <div className="p-4 border rounded-xl max-w-md space-y-4">
+    <div className="">
       <CardInput label="شماره کارت" value={cardNumber} onChange={handleChange} />
 
       <div className="flex justify-between pt-4">

@@ -35,7 +35,7 @@ const TravelDateStep: FC<TravelDateStepProps> = ({ step, setStep }) => {
   const prevStep = () => setStep((prev) => prev - 1);
 
   return (
-    <div className="max-w-md mx-auto p-4 border rounded-xl">
+    <div className="">
       <h3 className="mb-4 font-bold text-lg">تاریخ سفر خود را انتخاب کنید</h3>
       <DateRange
         ranges={[

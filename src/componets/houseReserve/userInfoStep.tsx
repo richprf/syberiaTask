@@ -26,7 +26,7 @@ const UserInfoStep: FC<Iprops> = ({ step, setStep }) => {
   const prevStep = () => setStep(step - 1);
 
   return (
-    <div className="p-4 border rounded-xl max-w-md space-y-4">
+    <div className="">
       <TextInput
         label="نام و نام خانوادگی"
         value={name}

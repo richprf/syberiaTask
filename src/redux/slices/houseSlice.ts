@@ -1,38 +1,3 @@
-// import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-// import { HouseProps } from "@/types/house";
-
-// interface HouseState {
-//   allHouses: HouseProps[];
-//   filteredHouses: HouseProps[];
-//   searchQuery: string;
-// }
-
-// const initialState: HouseState = {
-//   allHouses: [],
-//   filteredHouses: [],
-//   searchQuery: "",
-// };
-
-// const houseSlice = createSlice({
-//   name: "houses",
-//   initialState,
-//   reducers: {
-//     setHouses: (state, action: PayloadAction<HouseProps[]>) => {
-//       state.allHouses = action.payload;
-//       state.filteredHouses = action.payload;
-//     },
-//     setSearchQuery: (state, action: PayloadAction<string>) => {
-//       state.searchQuery = action.payload;
-//       state.filteredHouses = state.allHouses.filter((house) =>
-//         house.title.toLowerCase().includes(action.payload.toLowerCase())
-//       );
-//     },
-//   },
-// });
-
-// export const { setHouses, setSearchQuery } = houseSlice.actions;
-// export default houseSlice;
-
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { HouseProps } from "@/types/house";
 
@@ -90,7 +55,7 @@ const houseSlice = createSlice({
   },
 });
 
-// تابع واحد برای اعمال همه فیلترها با هم
+
 function applyFilters(state: HouseState) {
   return state.allHouses.filter((house) => {
     const matchesSearch =

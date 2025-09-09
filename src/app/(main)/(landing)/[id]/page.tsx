@@ -5,13 +5,18 @@ import HouseDetailBread from "@/componets/houseDetail/houseDetailBread";
 import HouseReserveContainer from "@/componets/houseDetail/houseDetailContainer";
 import HouseReserveTitle from "@/componets/houseDetail/houseDetailTitle";
 import { fetchHousesDetail } from "@/lib/fetchHouse";
+import { setHouseDetail } from "@/redux/slices/housedetail";
 import { Spinner } from "@heroui/react";
 import { useQuery } from "@tanstack/react-query";
 import { useParams, useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 const page = () => {
   const params = useParams();
   const id = params?.id;
+
+  const dispatch = useDispatch()
 
   const images = [
     "/assets/houseReserve/house7.jpg",
@@ -33,6 +38,13 @@ const page = () => {
     queryKey: ["reserveDeatail"],
     queryFn: () => fetchHousesDetail(id as string),
   });
+
+  useEffect(() => {
+    if (reserveDeatail) {
+      dispatch(setHouseDetail(reserveDeatail));
+    }
+  }, [reserveDeatail])
+  
 
   if (error) {
     return (
