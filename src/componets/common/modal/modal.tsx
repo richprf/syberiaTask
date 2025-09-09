@@ -20,7 +20,7 @@ interface Iprops {
     return (
       <>
         <Button onPress={onOpen} color="primary">{lable}</Button>
-        <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="2xl">
+        <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="2xl" className="bg-gray-800">
           <ModalContent>
             {(onClose) => (
               <>

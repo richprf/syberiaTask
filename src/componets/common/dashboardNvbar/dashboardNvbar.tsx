@@ -94,17 +94,6 @@ const DashboardNvbar = () => {
           );
         })}
       </div>
-      <div className="pt-[248px] pb-[19px]">
-        <div className=" py-5 border border-dotted border-gray-400 rounded-[12px] flex gap-2">
-          <div className="pr-[21.5px]">
-            <IoChatbubbleEllipses size={17} />
-          </div>
-          <div>
-            <p> نظرات جدید </p>
-            <p className="font-normal text-sm text-[#8888]"> 5 نظر </p>
-          </div>
-        </div>
-      </div>
     </div>
   );
 };

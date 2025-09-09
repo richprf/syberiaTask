@@ -35,27 +35,7 @@ const DashboardHeader = () => {
 
   const menuItems: Nvlink[] = [
     { label: "داشبورد", icons: Home, href: "/dashboard", index: 1 },
-    { label: "اطلاعات کاربری", icons: Home, href: "/reserve", index: 2 },
-    { label: "مدیریت املاک", icons: Home, href: "/mod", index: 3 },
-    {
-      label: "مدیریت رزرو",
-      icons: Home,
-      href: "/dashbdfdoard",
-      index: 4,
-    },
-    {
-      label: "مدیریت مالی",
-      icons: Home,
-      href: "/dashbfdsdsoard",
-      index: 5,
-    },
-    {
-      label: "مدیریت نظرات",
-      icons: Home,
-      href: "/dashsfsdboard",
-      index: 6,
-    },
-    { label: "اعلان ها", icons: Home, href: "/dashasasboard", index: 7 },
+
   ];
   return (
     <Navbar
@@ -86,14 +66,6 @@ const DashboardHeader = () => {
           {" "}
           <RxBell />
         </NavbarItem>
-        <NavbarItem className="flex gap-2 ">
-          <Skeleton className="w-[37px] h-[37px] rounded-[8px]" />
-          <div>
-            <p className="font-normal text-[14px]"> سبحان برار </p>
-            <p className="text-[12px] text-[#888888]">فروشنده </p>
-          </div>
-
-        </NavbarItem>
       </NavbarContent>
       <NavbarMenu className=" rounded-[12px] p-[19px]">
         {menuItems.map(({ label, href, icons: Icon, index }) => {
@@ -118,7 +90,7 @@ const DashboardHeader = () => {
                   size={18}
                   className={clsx(
                     isActive
-                      ? "dark:text-white text-black z-10"
+                      ? " text-black z-10"
                       : "text-gray-500 group-hover:text-lime-400 z-10"
                   )}
                 />

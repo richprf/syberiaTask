@@ -27,8 +27,9 @@ const NumberInput: FC<NumberInputProps> = ({
         placeholder={placeholder}
         onChange={(e) => onChange(Number(e.target.value))}
         classNames={{
-          inputWrapper: "h-14 rounded-[16px]",
-          input: "text-black placeholder:text-gray-400",
+          inputWrapper:
+            "focus-within:border-gray-400 focus-within:ring-0 focus-within:shadow-none",
+          input: "focus:outline-none text-white placeholder:text-gray-400",
         }}
       />
     </div>

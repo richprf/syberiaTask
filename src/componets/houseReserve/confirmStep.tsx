@@ -42,9 +42,9 @@ const ConfirmationStep: FC<Iprops> = ({ step, setStep }) => {
   const prevStep = () => setStep(step - 1);
 
   return (
-    <div className=" bg-white dark:bg-zinc-800">
+    <div className=" bg-zinc-800">
       <h2 className="text-xl font-bold mb-4">تایید نهایی رزرو</h2>
-      <ul className="space-y-2 text-gray-700 dark:text-gray-200">
+      <ul className="space-y-2 text-gray-200 p-5">
         <li>
           <strong>نام و نام خانوادگی:</strong> {reservation.name}
         </li>
@@ -67,10 +67,10 @@ const ConfirmationStep: FC<Iprops> = ({ step, setStep }) => {
         </li>
       </ul>
 
-      <div className="flex justify-between mt-6 gap-4">
+      <div className="flex justify-between mt-6 gap-4 ">
         <button
           onClick={prevStep}
-          className="flex items-center gap-1 border px-4 py-2 rounded-xl hover:bg-gray-100 dark:hover:bg-zinc-700"
+          className="flex items-center gap-1 border px-4 py-2 rounded-xl hover:bg-zinc-700"
         >
           <RiArrowLeftSLine />
           مرحله قبل
@@ -79,7 +79,7 @@ const ConfirmationStep: FC<Iprops> = ({ step, setStep }) => {
         <div>
           {/* اطلاعات رزرو */}
           <button
-            className="bg-blue-500 text-white px-4 py-2 rounded"
+            className="bg-green-400 text-white px-4 py-2 rounded"
             onClick={handleSubmit}
           >
             ثبت نهایی رزرو
