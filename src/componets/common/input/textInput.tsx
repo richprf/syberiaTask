@@ -1,0 +1,36 @@
+import { FC } from "react";
+import { Input } from "@heroui/react";
+
+interface TextInputProps {
+  label: string;
+  value: string;
+  onChange: (val: string) => void;
+  placeholder?: string;
+  className?: string;
+}
+
+const TextInput: FC<TextInputProps> = ({
+  label,
+  value,
+  onChange,
+  placeholder,
+  className,
+}) => {
+  return (
+    <div className={`flex flex-col gap-1 ${className}`}>
+      <label className="text-sm font-medium">{label}</label>
+      <Input
+        variant="bordered"
+        value={value}
+        placeholder={placeholder}
+        onChange={(e) => onChange(e.target.value)}
+        classNames={{
+          inputWrapper: "h-14 rounded-[16px]",
+          input: "text-black placeholder:text-gray-400",
+        }}
+      />
+    </div>
+  );
+};
+
+export default TextInput;

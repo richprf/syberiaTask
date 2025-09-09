@@ -1,3 +1,4 @@
+// components/houseReserve/ConfirmationStep.tsx
 import { FC } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/types";
@@ -13,51 +14,47 @@ const ConfirmationStep: FC<Iprops> = ({ step, setStep }) => {
   const dispatch = useDispatch();
   const reservation = useSelector((state: RootState) => state.reservation);
 
-  const prevStep = () => setStep((prev) => prev - 1);
+  // تبدیل تاریخ‌ها به Date واقعی
+  const startDate = reservation.startDate ? new Date(reservation.startDate) : null;
+  const endDate = reservation.endDate ? new Date(reservation.endDate) : null;
 
   const handleSubmit = () => {
-    console.log("Reservation submitted:", reservation);
+    // ارسال اطلاعات به سرور یا درگاه پرداخت
+    console.log("ارسال اطلاعات رزرو:", reservation);
+
     alert("رزرو با موفقیت ثبت شد!");
+
+    // ریست کردن فرم
     dispatch(resetReservation());
     setStep(1);
   };
 
+  const prevStep = () => setStep(step - 1);
+
   return (
-    <div className="p-6 border rounded-xl max-w-md mx-auto">
+    <div className="p-6 max-w-md mx-auto border rounded-xl bg-white dark:bg-zinc-800">
       <h2 className="text-xl font-bold mb-4">تایید نهایی رزرو</h2>
-
-      <div className="mb-4">
-        <h3 className="font-semibold">اطلاعات کاربر</h3>
-        <p>نام: {reservation.name}</p>
-        <p>ایمیل: {reservation.email}</p>
-        <p>تلفن: {reservation.phone}</p>
-      </div>
-
-      <div className="mb-4">
-        <h3 className="font-semibold">تاریخ سفر</h3>
-        <p>
-          {reservation.startDate
-            ? new Date(reservation.startDate).toLocaleDateString()
-            : "-"}{" "}
-          تا{" "}
-          {reservation.endDate
-            ? new Date(reservation.endDate).toLocaleDateString()
+      <ul className="space-y-2 text-gray-700 dark:text-gray-200">
+        <li><strong>نام و نام خانوادگی:</strong> {reservation.name}</li>
+        <li><strong>ایمیل:</strong> {reservation.email}</li>
+        <li><strong>شماره تلفن:</strong> {reservation.phone}</li>
+        <li>
+          <strong>تاریخ سفر:</strong>{" "}
+          {startDate ? startDate.toLocaleDateString() : "-"} -{" "}
+          {endDate ? endDate.toLocaleDateString() : "-"}
+        </li>
+        <li>
+          <strong>شماره کارت:</strong>{" "}
+          {reservation.cardNumber
+            ? `**** **** **** ${reservation.cardNumber.slice(-4)}`
             : "-"}
-        </p>
-      </div>
+        </li>
+      </ul>
 
-      <div className="mb-4">
-        <h3 className="font-semibold">پرداخت</h3>
-        <p>
-          شماره کارت: **** **** ****{" "}
-          {reservation.cardNumber.slice(-4) || "0000"}
-        </p>
-      </div>
-
-      <div className="flex justify-between gap-4 mt-6">
+      <div className="flex justify-between mt-6 gap-4">
         <button
           onClick={prevStep}
-          className="flex gap-2 items-center border border-black px-4 py-2 rounded-xl"
+          className="flex items-center gap-1 border px-4 py-2 rounded-xl hover:bg-gray-100 dark:hover:bg-zinc-700"
         >
           <RiArrowLeftSLine />
           مرحله قبل
@@ -65,7 +62,7 @@ const ConfirmationStep: FC<Iprops> = ({ step, setStep }) => {
 
         <button
           onClick={handleSubmit}
-          className="bg-green-500 text-white px-6 py-2 rounded-xl hover:bg-green-600 transition"
+          className="bg-green-500 text-white px-6 py-2 rounded-xl hover:bg-green-600"
         >
           ثبت نهایی رزرو
         </button>

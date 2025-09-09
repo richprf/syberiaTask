@@ -4,10 +4,6 @@ import HouseButton from "../common/blueButton/houseButton";
 import HouseInformationMobile from "./houseInformationMobile";
 import HouseInformation from "./houseInformation";
 import HouseAbout from "./houseAbout";
-import ReservationForm from "./housereserveInput";
-import ReservationForms from "../houseReserve/reservationForm";
-
-
 
 interface reserveDeatailtype {
   reserveDeatail: HouseProps;
@@ -16,7 +12,7 @@ interface reserveDeatailtype {
 const HouseReserveContainer: FC<reserveDeatailtype> = ({ reserveDeatail }) => {
   return (
     <>
-      <div className="grid grid-cols-2 gap-[113px]">
+      <div className="grid grid-cols-2 gap-[113px] ">
         <div>
           <div className="hidden md:block">
             <HouseButton
@@ -27,10 +23,6 @@ const HouseReserveContainer: FC<reserveDeatailtype> = ({ reserveDeatail }) => {
           <div>
             <HouseInformationMobile />
             <HouseInformation reserveDeatail={reserveDeatail} />
-          </div>
-          <div>
-            {/* <ReservationForm /> */}
-            <ReservationForms />
           </div>
         </div>
         <div>
