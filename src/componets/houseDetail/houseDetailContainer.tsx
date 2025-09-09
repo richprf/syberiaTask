@@ -5,6 +5,7 @@ import HouseInformationMobile from "./houseInformationMobile";
 import HouseInformation from "./houseInformation";
 import HouseAbout from "./houseAbout";
 import ReservationForm from "./housereserveInput";
+import ReservationForms from "../houseReserve/reservationForm";
 
 
 
@@ -28,7 +29,8 @@ const HouseReserveContainer: FC<reserveDeatailtype> = ({ reserveDeatail }) => {
             <HouseInformation reserveDeatail={reserveDeatail} />
           </div>
           <div>
-            <ReservationForm />
+            {/* <ReservationForm /> */}
+            <ReservationForms />
           </div>
         </div>
         <div>

@@ -12,7 +12,7 @@ const HouseCardImage: FC<{ house: HouseProps }> = ({ house }) => {
 
   return (
     <div className="relative rounded-[24px]">
-      <Link href={"/houseReserve/" + house.id}>
+      <Link href={"/" + house.id}>
         <Image
           src={"/assets/houseReserve/house.png"}
           alt={house.title}

@@ -34,8 +34,6 @@ const page = () => {
     queryFn: () => fetchHousesDetail(id as string),
   });
 
-  console.log("reservederail", reserveDeatail);
-
   if (error) {
     return (
       <p className="text-center text-xl mb-14">خطا در دریافت اطلاعات :(</p>
