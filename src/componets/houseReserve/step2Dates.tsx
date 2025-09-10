@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState, useEffect } from "react";
 import { DateRange } from "react-date-range";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/types";
@@ -18,7 +18,13 @@ const TravelDateStep: FC<TravelDateStepProps> = ({ step, setStep }) => {
     (state: RootState) => state.reservation
   );
 
-  // اطمینان از اینکه تاریخ‌ها همیشه Date هستند
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!startDate || !endDate) setError("لطفاً تاریخ شروع و پایان را انتخاب کنید");
+    else setError(null);
+  }, [startDate, endDate]);
+
   const safeStartDate = startDate ? new Date(startDate) : new Date();
   const safeEndDate = endDate ? new Date(endDate) : new Date();
 
@@ -31,8 +37,12 @@ const TravelDateStep: FC<TravelDateStepProps> = ({ step, setStep }) => {
     );
   };
 
-  const nextStep = () => setStep((prev) => prev + 1);
+  const nextStep = () => {
+    if (!error) setStep((prev) => prev + 1);
+  };
   const prevStep = () => setStep((prev) => prev - 1);
+
+
 
   return (
     <div className="">
@@ -52,7 +62,8 @@ const TravelDateStep: FC<TravelDateStepProps> = ({ step, setStep }) => {
 
       {startDate && endDate && (
         <p className="mt-2 text-gray-700">
-          انتخاب شده: {safeStartDate.toLocaleDateString()} - {safeEndDate.toLocaleDateString()}
+          انتخاب شده: {safeStartDate.toLocaleDateString()} -{" "}
+          {safeEndDate.toLocaleDateString()}
         </p>
       )}
 
@@ -66,7 +77,10 @@ const TravelDateStep: FC<TravelDateStepProps> = ({ step, setStep }) => {
         </button>
         <button
           onClick={nextStep}
-          className="flex items-center gap-1 bg-green-400 text-white rounded-xl px-4 py-2 hover:bg-green-500"
+          disabled={!!error} 
+          className={`flex items-center gap-1 rounded-xl px-4 py-2 text-white ${
+            error ? "bg-gray-400 cursor-not-allowed" : "bg-green-400 hover:bg-green-500"
+          }`}
         >
           مرحله بعد
           <RiArrowLeftSLine />

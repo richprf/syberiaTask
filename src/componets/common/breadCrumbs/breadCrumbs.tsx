@@ -5,7 +5,7 @@ export default function BreadCrumbsComponents() {
   const [currentPage, setCurrentPage] = React.useState("song");
 
   return (
-    <Breadcrumbs underline="active" onAction={(key) => setCurrentPage(String(key))} className="dark:text-gray-800">
+    <Breadcrumbs underline="active" onAction={(key) => setCurrentPage(String(key))} className="text-gray-800">
       <BreadcrumbItem key="home" isCurrent={currentPage === "home"}  >
         خانه
       </BreadcrumbItem>

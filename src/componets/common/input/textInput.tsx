@@ -7,6 +7,7 @@ interface TextInputProps {
   onChange: (val: string) => void;
   placeholder?: string;
   className?: string;
+  error?: string; 
 }
 
 const TextInput: FC<TextInputProps> = ({
@@ -15,6 +16,7 @@ const TextInput: FC<TextInputProps> = ({
   onChange,
   placeholder,
   className,
+  error,
 }) => {
   return (
     <div className={`flex flex-col gap-1 ${className}`}>
@@ -25,11 +27,13 @@ const TextInput: FC<TextInputProps> = ({
         placeholder={placeholder}
         onChange={(e) => onChange(e.target.value)}
         classNames={{
-          inputWrapper:
-            "focus-within:border-gray-400 focus-within:ring-0 focus-within:shadow-none",
+          inputWrapper: `focus-within:border-gray-400 focus-within:ring-0 focus-within:shadow-none ${
+            error ? "border-red-500" : ""
+          }`, 
           input: "focus:outline-none text-white placeholder:text-gray-400",
         }}
       />
+      {error && <span className="text-red-500 text-xs">{error}</span>} 
     </div>
   );
 };

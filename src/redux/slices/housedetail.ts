@@ -1,4 +1,3 @@
-// redux/slices/houseDetailSlice.ts
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { HouseProps } from "@/types/house";
 

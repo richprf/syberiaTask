@@ -1,5 +1,4 @@
-// components/reservation/UserInfoStep.tsx
-import { FC } from "react";
+import { FC, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/types";
 import { updateReservation } from "@/redux/slices/reservationSlice";
@@ -22,25 +21,50 @@ const UserInfoStep: FC<Iprops> = ({ step, setStep }) => {
     dispatch(updateReservation({ [field]: value }));
   };
 
+  const [errors, setErrors] = useState<{ name?: string; email?: string; phone?: string }>({});
+
+  useEffect(() => {
+    const newErrors: typeof errors = {};
+
+    if (!name.trim()) newErrors.name = "نام و نام خانوادگی نمی‌تواند خالی باشد";
+
+    if (!email.trim()) newErrors.email = "ایمیل نمی‌تواند خالی باشد";
+    else if (!/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email))
+      newErrors.email = "ایمیل معتبر نیست";
+
+    if (!phone.trim()) newErrors.phone = "شماره تلفن نمی‌تواند خالی باشد";
+    else if (!/^\d{10,15}$/.test(phone)) newErrors.phone = "شماره تلفن معتبر نیست";
+
+    setErrors(newErrors);
+  }, [name, email, phone]);
+
   const nextStep = () => setStep(step + 1);
   const prevStep = () => setStep(step - 1);
+
+  const hasErrors = Object.keys(errors).length > 0;
 
   return (
     <div className="">
       <TextInput
         label="نام و نام خانوادگی"
         value={name}
-        onChange={(val:any) => handleChange("name", val)}
+        onChange={(val) => handleChange("name", val)}
+        error={errors.name}
+        placeholder="مثلاً: علی رضایی"
       />
       <TextInput
         label="ایمیل"
         value={email}
-        onChange={(val:any) => handleChange("email", val)}
+        onChange={(val) => handleChange("email", val)}
+        error={errors.email}
+        placeholder="example@mail.com"
       />
       <TextInput
         label="شماره تلفن"
         value={phone}
-        onChange={(val:any) => handleChange("phone", val)}
+        onChange={(val) => handleChange("phone", val)}
+        error={errors.phone}
+        placeholder="مثلاً: 09123456789"
       />
 
       <div className="flex justify-between pt-4">
@@ -52,9 +76,13 @@ const UserInfoStep: FC<Iprops> = ({ step, setStep }) => {
             <RiArrowLeftSLine /> مرحله قبل
           </button>
         )}
-        <button
+       <button
+          type="button"
           onClick={nextStep}
-          className="bg-green-400 rounded-xl px-4 py-2 text-white"
+          disabled={hasErrors} 
+          className={`rounded-xl px-4 py-2 text-white ${
+            hasErrors ? "bg-gray-400 cursor-not-allowed" : "bg-green-400"
+          }`}
         >
           مرحله بعد
         </button>

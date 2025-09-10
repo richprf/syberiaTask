@@ -1,7 +1,5 @@
 "use client";
 
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { toggleTheme } from "@/redux/slices/global";
 import {
   Navbar,
   NavbarContent,
@@ -11,14 +9,13 @@ import {
   NavbarMenuToggle,
   Skeleton,
 } from "@heroui/react";
-import { Moon, Sun } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { RxBell } from "react-icons/rx";
 import { Home, LucideIcon } from "lucide-react";
 import clsx from "clsx";
 import { usePathname } from "next/navigation";
-import { BsFillCaretLeftFill } from "react-icons/bs"
+import { BsFillCaretLeftFill } from "react-icons/bs";
 
 type Nvlink = {
   label: string;
@@ -30,12 +27,8 @@ const DashboardHeader = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathName = usePathname();
 
-;
-
-
   const menuItems: Nvlink[] = [
     { label: "داشبورد", icons: Home, href: "/dashboard", index: 1 },
-
   ];
   return (
     <Navbar
@@ -48,11 +41,12 @@ const DashboardHeader = () => {
     >
       <NavbarContent justify="start" className="hidden lg:flex">
         <NavbarItem className="flex gap-2">
-          داشبورد         <div className="flex items-center gap-1 pl-5">
-          <BsFillCaretLeftFill size={14} className="opacity-30" />
-          <BsFillCaretLeftFill size={18} className="opacity-60" />
-          <BsFillCaretLeftFill size={23} className="opacity-100" />
-        </div>
+          داشبورد{" "}
+          <div className="flex items-center gap-1 pl-5">
+            <BsFillCaretLeftFill size={14} className="opacity-30" />
+            <BsFillCaretLeftFill size={18} className="opacity-60" />
+            <BsFillCaretLeftFill size={23} className="opacity-100" />
+          </div>
         </NavbarItem>
       </NavbarContent>
       <NavbarContent className="lg:hidden" justify="start">
@@ -61,7 +55,6 @@ const DashboardHeader = () => {
         />
       </NavbarContent>
       <NavbarContent justify="end" className="hidden sm:flex">
-
         <NavbarItem className="border-r-2 pr-3 border-[#9c9c9c]">
           {" "}
           <RxBell />

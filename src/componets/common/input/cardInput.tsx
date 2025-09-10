@@ -1,4 +1,3 @@
-// components/ui/CardInput.tsx
 import { FC } from "react";
 import { Input } from "@heroui/react";
 
@@ -7,6 +6,7 @@ interface CardInputProps {
   value: string;
   onChange: (val: string) => void;
   className?: string;
+  error?: any; 
 }
 
 const CardInput: FC<CardInputProps> = ({
@@ -14,6 +14,7 @@ const CardInput: FC<CardInputProps> = ({
   value,
   onChange,
   className,
+  error,
 }) => {
   const handleChange = (val: string) => {
     const onlyDigits = val.replace(/\D/g, "");
@@ -30,11 +31,13 @@ const CardInput: FC<CardInputProps> = ({
         placeholder="1234 5678 9012 3456"
         onChange={(e) => handleChange(e.target.value)}
         classNames={{
-          inputWrapper:
-            "focus-within:border-gray-400 focus-within:ring-0 focus-within:shadow-none",
+          inputWrapper: `focus-within:border-gray-400 focus-within:ring-0 focus-within:shadow-none ${
+            error ? "border-red-500" : ""
+          }`, 
           input: "focus:outline-none text-white placeholder:text-gray-400",
         }}
       />
+      {error && <span className="text-red-500 text-sm">{error}</span>} {/* پیام خطا */}
     </div>
   );
 };

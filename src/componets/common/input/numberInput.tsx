@@ -1,4 +1,3 @@
-// components/ui/NumberInput.tsx
 import { FC } from "react";
 import { Input } from "@heroui/react";
 

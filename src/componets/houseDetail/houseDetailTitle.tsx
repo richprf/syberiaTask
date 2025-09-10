@@ -3,20 +3,13 @@ import { TbPinFilled } from "react-icons/tb";
 import { FaRegMap } from "react-icons/fa6";
 import Modals from "../common/modal/modal";
 import ReservationForms from "../houseReserve/reservationForm";
-import { useDispatch } from "react-redux";
-import { addReservation } from "@/redux/slices/userReservationsSlice";
-import { HouseProps } from "@/types/house";
 
 interface Iprops {
   title: string;
   address: string;
-  
 }
 
-const HouseReserveTitle = ({ title, address  }: Iprops) => {
-
-
-
+const HouseReserveTitle = ({ title, address }: Iprops) => {
   return (
     <div className="flex justify-between ">
       <div>

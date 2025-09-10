@@ -1,4 +1,3 @@
-// redux/slices/reservationSlice.ts
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface ReservationState {

@@ -8,7 +8,7 @@ import { fetchHousesDetail } from "@/lib/fetchHouse";
 import { setHouseDetail } from "@/redux/slices/housedetail";
 import { Spinner } from "@heroui/react";
 import { useQuery } from "@tanstack/react-query";
-import { useParams, useRouter } from "next/navigation";
+import { useParams} from "next/navigation";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 

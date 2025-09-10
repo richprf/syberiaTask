@@ -1,4 +1,3 @@
-// components/reservation/ConfirmationAnimation.tsx
 import { FC, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { IoIosCheckmarkCircleOutline } from "react-icons/io";
@@ -15,7 +14,7 @@ const ConfirmationAnimation: FC<IProps> = ({ show, onClose , setStep }) => {
       const timer = setTimeout(() => {
         onClose();
         setStep(1)
-      }, 3000); // بعد از 3 ثانیه بسته شود
+      }, 3000); 
       return () => clearTimeout(timer);
     }
   }, [show, onClose]);

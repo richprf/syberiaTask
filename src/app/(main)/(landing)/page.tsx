@@ -14,7 +14,6 @@ const page = () => {
   const {
     data: houses,
     isLoading,
-    refetch,
     error,
   } = useQuery({
     queryKey: ["houses"],
