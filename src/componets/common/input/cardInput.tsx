@@ -9,8 +9,12 @@ interface CardInputProps {
   className?: string;
 }
 
-const CardInput: FC<CardInputProps> = ({ label, value, onChange, className }) => {
-  // ساده ترین ماسک برای شماره کارت: فقط اعداد
+const CardInput: FC<CardInputProps> = ({
+  label,
+  value,
+  onChange,
+  className,
+}) => {
   const handleChange = (val: string) => {
     const onlyDigits = val.replace(/\D/g, "");
     onChange(onlyDigits);

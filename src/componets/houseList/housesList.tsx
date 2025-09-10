@@ -20,8 +20,7 @@ const PAGE_SIZE = 8;
 const HousesList: FC<MapViewProps> = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const dispatch = useDispatch();
-  const {filteredHouses } = useAppSelector((state: RootState) => state.houses);
-
+  const { filteredHouses } = useAppSelector((state: RootState) => state.houses);
 
   const start = (currentPage - 1) * PAGE_SIZE;
   const end = start + PAGE_SIZE;
@@ -32,8 +31,6 @@ const HousesList: FC<MapViewProps> = () => {
     dispatch(setSearchQuery(q));
     setCurrentPage(1);
   };
-
-
 
   return (
     <div className="hidden md:flex flex-col gap-3  absolute top-0 right-0 max-w-[540px] h-screen overflow-y-auto z-10 space-y-3 rounded-l-[32px] bg-dark-200 pr-[56px] pl-5">

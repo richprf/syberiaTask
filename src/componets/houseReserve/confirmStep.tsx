@@ -6,19 +6,18 @@ import { RiArrowLeftSLine } from "react-icons/ri";
 import ConfirmationAnimation from "../common/confirmationAnimation/confirmationAnimation";
 import { addReservation } from "@/redux/slices/userReservationsSlice";
 
-
 interface Iprops {
   step: number;
   setStep: React.Dispatch<React.SetStateAction<number>>;
 }
 
-
 const ConfirmationStep: FC<Iprops> = ({ step, setStep }) => {
-
   const [showAnimation, setShowAnimation] = useState(false);
   const dispatch = useDispatch();
   const reservation = useSelector((state: RootState) => state.reservation);
-  const selectedHouse =  useSelector((state: RootState) => state.houseDetail.house);
+  const selectedHouse = useSelector(
+    (state: RootState) => state.houseDetail.house
+  );
 
   const startDate = reservation.startDate
     ? new Date(reservation.startDate)
@@ -28,7 +27,7 @@ const ConfirmationStep: FC<Iprops> = ({ step, setStep }) => {
   const handleSubmit = () => {
     dispatch(
       addReservation({
-        house: selectedHouse, 
+        house: selectedHouse,
         startDate: startDate?.toISOString() || "",
         endDate: endDate?.toISOString() || "",
         status: "confirmed",
@@ -77,7 +76,6 @@ const ConfirmationStep: FC<Iprops> = ({ step, setStep }) => {
         </button>
 
         <div>
-          {/* اطلاعات رزرو */}
           <button
             className="bg-green-400 text-white px-4 py-2 rounded"
             onClick={handleSubmit}

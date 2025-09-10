@@ -67,7 +67,7 @@ const MapViews: React.FC<MapViewProps> = ({ houses }) => {
         <HousesList houses={houses} />
       </div>
 
-      <HouseListMobile houses={houses} />
+      <HouseListMobile />
     </>
   );
 };
