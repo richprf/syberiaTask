@@ -2,7 +2,7 @@ import { FC, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/types";
 import { updateReservation } from "@/redux/slices/reservationSlice";
-
+import { parsePhoneNumberFromString } from "libphonenumber-js";
 import { RiArrowLeftSLine } from "react-icons/ri";
 import TextInput from "../common/input/textInput";
 
@@ -16,6 +16,8 @@ const UserInfoStep: FC<Iprops> = ({ step, setStep }) => {
   const { name, email, phone } = useSelector(
     (state: RootState) => state.reservation
   );
+
+  const phoneNumber = parsePhoneNumberFromString(phone, "IR");
 
   const handleChange = (field: string, value: string) => {
     dispatch(updateReservation({ [field]: value }));
@@ -32,8 +34,11 @@ const UserInfoStep: FC<Iprops> = ({ step, setStep }) => {
     else if (!/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email))
       newErrors.email = "ایمیل معتبر نیست";
 
-    if (!phone.trim()) newErrors.phone = "شماره تلفن نمی‌تواند خالی باشد";
-    else if (!/^\d{10,15}$/.test(phone)) newErrors.phone = "شماره تلفن معتبر نیست";
+      if (!phone.trim()) {
+        newErrors.phone = "شماره تلفن نمی‌تواند خالی باشد";
+      } else if (!phoneNumber || !phoneNumber.isValid()) {
+        newErrors.phone = "شماره تلفن معتبر نیست";
+      }
 
     setErrors(newErrors);
   }, [name, email, phone]);

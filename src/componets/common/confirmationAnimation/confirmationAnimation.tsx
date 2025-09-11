@@ -1,6 +1,7 @@
 import { FC, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { IoIosCheckmarkCircleOutline } from "react-icons/io";
+import { useRouter } from "next/navigation";
 
 interface IProps {
   show: boolean;
@@ -9,15 +10,17 @@ interface IProps {
 }
 
 const ConfirmationAnimation: FC<IProps> = ({ show, onClose , setStep }) => {
+  const router = useRouter();
   useEffect(() => {
     if (show) {
       const timer = setTimeout(() => {
         onClose();
         setStep(1)
-      }, 3000); 
+        router.push("/dashboard"); 
+      }, 2000); 
       return () => clearTimeout(timer);
     }
-  }, [show, onClose]);
+  }, [show, onClose  , router]);
 
   return (
     <AnimatePresence>
